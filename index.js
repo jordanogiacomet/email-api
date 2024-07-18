@@ -37,7 +37,7 @@ app.post('/send-email', (req, res) => {
     if (error) {
       return res.status(500).send(error.toString());
     }
-    res.status(200).send('Email sent: ' + info.response);
+    res.status(200).send('Email sent to: ' + info.response);
   });
 });
 
