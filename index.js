@@ -2,6 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -37,6 +38,17 @@ app.post('/send-email', (req, res) => {
       return res.status(500).send(error.toString());
     }
     res.status(200).send('Email sent: ' + info.response);
+  });
+});
+
+// Adicione este endpoint para servir o arquivo PDF
+app.get('/download-cv', (req, res) => {
+  const file = path.join(__dirname, 'public', 'Curriculo.pdf');
+  res.download(file, 'Curriculo.pdf', (err) => {
+    if (err) {
+      console.error('Error downloading file:', err);
+      res.status(500).send('Error downloading file');
+    }
   });
 });
 
