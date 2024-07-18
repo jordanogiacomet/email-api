@@ -27,7 +27,7 @@ app.post('/send-email', (req, res) => {
   const { email, subject, message } = req.body;
   const mailOptions = {
     from: email,
-    to: process.env.MAILTRAP_USER,
+    to: process.env.RECIPIENT_EMAIL,
     subject: subject,
     text: message,
   };
