@@ -5,8 +5,15 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+
+// Configure CORS
+const corsOptions = {
+  origin: 'https://jordano-portfolio.vercel.app/', // Substitua pelo URL do seu frontend em produção se necessário
+  optionsSuccessStatus: 200,
+};
+
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 const transporter = nodemailer.createTransport({
   host: process.env.MAILTRAP_HOST,
@@ -21,7 +28,7 @@ app.post('/send-email', (req, res) => {
   const { email, subject, message } = req.body;
   const mailOptions = {
     from: email,
-    to: process.env.RECIPIENT_EMAIL,
+    to: process.env.MAILTRAP_USER,
     subject: subject,
     text: message,
   };
