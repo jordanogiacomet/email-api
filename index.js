@@ -43,7 +43,7 @@ app.post('/send-email', (req, res) => {
 
 // Adicione este endpoint para servir o arquivo PDF
 app.get('/download-cv', (req, res) => {
-  const file = path.join(__dirname, 'public', 'Curriculo.pdf');
+  const file = path.join(__dirname, 'public', 'curriculo.pdf');
   res.download(file, 'Curriculo.pdf', (err) => {
     if (err) {
       console.error('Error downloading file:', err);
